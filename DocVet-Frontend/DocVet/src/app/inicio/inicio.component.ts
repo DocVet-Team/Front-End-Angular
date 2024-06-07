@@ -1,11 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [ButtonModule,RouterLink],
+  imports: [RouterModule,CommonModule],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css'
 })

@@ -1,33 +1,32 @@
+<!-- inicio.component.html -->
 <header class="container-fluid">
     <div>
         <div class="row d-flex align-items-center text-center verdeEscuro">
-            <div class="col-4"></div>
-
+            <div class="col-4"></div><!--Para futuras adições-->
+  
             <div class="col-4">
-                <img class="circulo" src="assets/images/docvet.png" alt="DocVet" width="40px">
-
-                <div class="col-4">
-                    <a href="/html/gerenciarCadastros.html">
-                        <button pButton type="button" label="Administrativo"
-                            class="btn-lg btn-verde mb-4 mt-2 fs-2"></button>
-                    </a>
-                    <a routerLink="/login" routerLinkActive="selected">
-                        <button pButton type="button" label="Login" class="btn-verde btn-verde mb-4 mt-2 fs-2"></button>
-                    </a>
-                </div>
+                <img class="circulo" src="assets/images/docvet.png" width="40px">
+            </div>
+            <div class="col-4">
+                <a routerLink="/gerenciarCadastros">
+                    <button class="me-5 btn btn-light">Administrativo</button>
+                </a>
+                <a routerLink="/login">
+                    <button class="btn btn-light">Login</button>
+                </a>
             </div>
         </div>
     </div>
-</header>
-
-<div>
+  </header>
+  
+  <div>
     <h1 class="text-center fs-1 mt-5">DocPet</h1>
-</div>
-
-<br>
-<br>
-
-<div class="container">
+  </div>
+  
+  <br>
+  <br>
+  
+  <div class="container">
     <div class="row d-flex align-items-center text-center">
         <div class="col">
             <div class="row">
@@ -37,22 +36,21 @@
                 <p class="fs-4">Aqui você pode encontrar os melhores veterinários e planos de saúde para o seu pet</p>
             </div>
             <div>
-                <a href="/html/PesquisaVeterinario.html">
-                    <button pButton type="button" label="Proteger meu Pet"
-                        class="btn-lg btn-verde mb-4 mt-2 fs-2"></button>
+                <a routerLink="/pesquisaVeterinario">
+                    <button class="btn btn-lg btn-verde mb-4 mt-2 fs-2" type="button">Proteger meu Pet</button>
                 </a>
             </div>
         </div>
-
+  
         <div class="col-sm-1"></div>
-
+  
         <div class="col">
-            <img src="assets/images/medico-veterinario-rotina-pet-convenio-veterinario-comvet.jpg" alt="Veterinário"
-                width="900px">
+            <img src="/style/img/medico-veterinario-rotina-pet-convenio-veterinario-comvet.jpg" width="700px">
         </div>
-
-        <div>
+  
+        <div><!--Apenas para telas com resolução menores / Pode ser retirado depois de adicionado um rodapé-->
             <br>
         </div>
     </div>
-</div>
+  </div>
+  

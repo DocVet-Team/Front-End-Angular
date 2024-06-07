@@ -1,1 +1,46 @@
-<h1>login</h1>
+<!-- login.component.html -->
+<div class="container">
+  <div class="form-image">
+    <h1 class="bv">Bem Vindo ao DocVet</h1>
+    <img src="/style/img/cachorroMedico.jpg" alt="cachorroMedico">
+  </div>
+  <div class="form">
+    <form (ngSubmit)="login()" #form="ngForm">
+      <div class="form-header">
+        <div class="circulo">
+          <img src="/style/img/docvet.png" alt="" width="100">
+        </div>
+
+        <div class="title">
+          <h1>Login</h1>
+        </div>
+
+      </div>
+      <div class="input-group">
+        <div class="input-box">
+          <input id="email" type="text" placeholder="Digite seu E-mail" required [(ngModel)]="formData.email" name="email">
+        </div>
+
+        <div class="input-box">
+          <input id="senha" type="password" placeholder="Digite sua senha" required [(ngModel)]="formData.senha" name="senha">
+        </div>
+
+        <div class="login-button">
+          <button type="submit">Entrar</button>
+        </div>
+
+        <div class="title">
+          <h1>Não possui cadastro?</h1>
+        </div>
+        <div class="cadastre-button">
+          <button><a routerLink="/cadastroDonoPet">Dono de pet</a></button>
+        </div>
+
+      </div>
+      <div class="cadastre-button">
+        <button><a routerLink="/cadastroVeterinario">Veterinario</a></button>
+      </div>
+
+    </form>
+  </div>
+</div>

@@ -1,1 +1,90 @@
-<p>perfil works!</p>
+<!-- perfil.component.html -->
+<header>
+    <div>
+        <div class="row text-center d-flex align-items-center">
+            <div class="col text-center">
+                <a routerLink="/inicio">
+                    <button class="btn btn-light">Página Inicial</button>
+                </a>
+            </div>
+            <div class="col">
+                <img src="/style/img/docvet.png" height="40px" class="circulo" />
+            </div>
+            <div class="col">
+                <a routerLink="/inicio">
+                    <button class="btn btn-light">Cadastrar</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<nav class="navbar navbar-dark verdeFigurante">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral">
+            <span style="color: black;" class="material-symbols-outlined">menu</span>
+        </button>
+
+        <!--INÍCIO DO OFFCANVAS-->
+        <section class="offcanvas offcanvas-start verdeEscuro" id="menuLateral" tabindex="-1">
+            <!--start(Iniciará na esquerda)-->
+            <div class="offcanvas-header">
+                <h4 id="nomePerfil" class="offcanvas-title text-light" value=""></h4>
+                <button class="btn btn-light btn-lg bi-x-circle" type="button" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="perfildonoMenu">
+                <img id="fotoPerfil" class="circuloPerfil" src="" alt="perfil">
+                <a routerLink="/perfil"><button class="btn btn-lg btn-light mt-3">Meu Perfil</button></a><!--lasanha-->
+            </div>
+            <div class="petsMenu">
+                <div id="botoesPet" class="row d-flex align-items-center justify-content-center">
+                </div>
+            </div>
+        </section>
+        <!--FIM DO OFFCANVAS-->
+    </div>
+</nav>
+
+<main>
+    <div class="DonoPetPerfil" id="informacoesDonoPet">
+        <div class="container">
+            <form id="formDonoPet">
+                <h1 class="d-flex justify-content-center pb-4 p-4">Perfil de Usuario</h1>
+                <input hidden type="number" id="userId" />
+
+                <div class="container">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <div class="form-control">
+                                <label>Nome</label>
+                                <input class="form-control" id="nome" type="text" name="nome" [disabled]="true" />
+                            </div>
+                        </div>
+                        <!-- Outros campos do formulário -->
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col">
+                        <div class="form-control">
+                            <label>Link de foto</label>
+                            <input class="form-control" id="fotodonopet" type="text" [disabled]="true" />
+                        </div>
+                    </div>
+                </div>
+                <div class="container d-flex justify-content-center mt-3">
+                    <button class="botao" type="button">
+                        <img src="/style/img/editar.png" alt="Editar" />
+                    </button>
+                    <button class="botao" type="button">
+                        <img src="/style/img/salvar1.png" alt="Salvar" />
+                    </button>
+                </div>
+            </form>
+            <div id="userId" class="text-center">{{userId}}</div>
+        </div>
+    </div>
+
+
+
+</main>
