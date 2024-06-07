@@ -81,3 +81,16 @@ h5 {
     padding: 50px;
 }
 
+.verde-escuro {
+    background-color: #186053;
+}
+
+.verde-claro {
+    background-color: #4fc0ab;
+}
+
+.center-button {
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+}
