@@ -1,1 +1,119 @@
-<p>cadastro-dono-de-pet works!</p>
+<div class="container">
+    <div class="form-image">
+        <h1 class="bv">Bem Vindo ao DocVet</h1>
+        <img src="/assets/images/cachorroMedico.jpg" alt="cachorroMedico">
+    </div>
+    
+    <div class="form">
+        <form>
+            <div class="form-header">
+                <div class="circulo">
+                    <img src="/assets/images/docvet.png" alt="" width="100">
+                </div>
+                <div class="title">
+                    <h1>Possui Cadastro?</h1>
+                </div>
+                <div class="login-button">
+                    <a routerLink="/">
+                        <button class="me-5 btn btn-light">Entrar</button>
+                      </a>
+
+                    
+                </div>
+            </div> <!-- Fechamento da div .form-header -->
+        </form> <!-- Fechamento do primeiro formulário -->
+
+        <form id="form">
+            <div class="title">
+                <h1>Cadastre-se</h1>
+            </div>
+
+            <div class="input-group">
+                <div class="input-box">
+                    <input id="nome" type="text" name="nome" placeholder="Digite seu nome completo" class="inputs required" oninput="nameValidate()">
+                    <span class="span-required"><b>Nome deve conter no mínimo 3 caracteres</b></span>
+                </div>
+
+                <div class="input-box">
+                    <input id="cpf" type="text" name="cpf" placeholder="Digite seu CPF" class="inputs required" oninput="cpfValidate()" required>
+                    <span class="span-required"><b>CPF deve conter 11 dígitos</b></span>
+                </div>
+
+                <div class="input-box">
+                    <input id="telefone" type="tel" name="telefone" placeholder="Digite Seu telefone" class="inputs required" oninput="celularValidate()">
+                    <span class="span-required"><b>Telefone deve conter 11 dígitos</b></span>
+                </div>
+
+                <div class="input-box">
+                    <input id="email" type="email" name="email" placeholder="Digite seu Email" class="inputs required" oninput="emailValidate()" required>
+                    <span class="span-required"><b>Digite um e-mail válido</b></span>
+                </div>
+
+                <div class="input-box">
+                    <input id="senha" type="password" name="senha" placeholder="Digite sua senha" class="inputs required" oninput="mainPasswordValidate()" required>
+                    <span class="span-required"><b>Digite uma senha com no mínimo 8 caracteres</b></span>
+                </div>
+
+                <div class="input-box">
+                    <input id="confsenha" type="password" name="confsenha" placeholder="Digite sua senha novamente" class="inputs required" oninput="comparePassword()" required>
+                    <span class="span-required"><b>Senhas devem ser iguais</b></span>
+                </div>
+            </div> <!-- Fechamento da div .input-group -->
+
+            <div class="cadastre-button">
+                <button type="submit">Cadastrar-se</button>
+            </div>
+        </form> <!-- Fechamento do segundo formulário -->
+    </div> <!-- Fechamento da div .form -->
+</div> <!-- Fechamento da div .container -->
+
+
+<!-- <script src="/js/Validacoes/cadastro.js"></script>
+    <script>
+        document.getElementById("form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Evita o comportamento padrão do envio do formulário
+
+            // Recupere os valores dos campos do formulário
+            var nome = document.getElementById("nome").value;
+            var cpf = document.getElementById("cpf").value;
+            var telefone = document.getElementById("telefone").value;
+            var email = document.getElementById("email").value;
+            var senha = document.getElementById("senha").value;
+            var confsenha = document.getElementById("confsenha").value;
+
+            // Construa um objeto com os dados do formulário
+            var formData = {
+                nome: nome,
+                cpf: cpf,
+                telefone: telefone,
+                email: email,
+                senha: senha,
+                confsenha: confsenha                
+            };
+
+            // Faça a solicitação para a sua API usando Fetch
+            fetch("http://localhost:3000/donoPet/", {
+                method: "POST", // Use o método HTTP adequado (POST)
+                headers: {
+                    "Content-Type": "application/json" // Defina o tipo de conteúdo como JSON
+                },
+                body: JSON.stringify(formData) // Converta os dados do formulário em formato JSON
+            })
+            .then(function(response) {
+                // Verifique o status da resposta da API
+                if (response.ok) {
+                    // O cadastro foi realizado com sucesso
+                    alert("Cadastro realizado com sucesso!");
+                } else {
+                    // Ocorreu um erro durante o cadastro
+                    alert("Ocorreu um erro durante o cadastro. Tente novamente mais tarde.");
+                }
+            })
+            .catch(function(error) {
+                // Ocorreu um erro de conexão com a API
+                alert("Ocorreu um erro de conexão com a API. Verifique sua conexão de internet e tente novamente.");
+            });
+        });
+
+// este esta funcionando com o front end
+</script> -->
