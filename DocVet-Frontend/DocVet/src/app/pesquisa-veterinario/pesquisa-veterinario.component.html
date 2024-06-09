@@ -185,8 +185,15 @@
             </div>
 
   </div>
+  <br>
   <!-- LISTAGEM DE VETERINÁRIOS -->
-  <div style="display: flex; align-items: center; justify-self: center; flex-direction: row; flex-wrap: wrap; row-gap: 20px; column-gap: 20px;">
-    <app-vet-container-listagem *ngFor="let veterinario of veterinarios"></app-vet-container-listagem>
+  <div style="display: flex; align-items: center; justify-content: center; flex-direction: row; flex-wrap: wrap; row-gap: 20px; column-gap: 20px; height: 100vh;">
+    <app-vet-container-listagem
+        *ngFor="let veterinario of veterinarios"
+        [especialidades]="veterinario.especialidades"
+        [nome]="veterinario.nome"
+        [valor]="veterinario.valor"
+        [foto]="veterinario.foto"
+    ></app-vet-container-listagem>
   </div>
 </div>

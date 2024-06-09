@@ -1,3 +1,5 @@
+import { Especialidade } from "./especialidade.model";
+
 export class Veterinario {
   id: number = 0;
   nome: string = "";
@@ -5,5 +7,7 @@ export class Veterinario {
   email: string = '';
   foto: string = '';
   senha: string = '';
+  valor: number = 0;
+  especialidades: Especialidade[] = [];
 
 }
