@@ -27,3 +27,12 @@
     border-radius: 10px;
     background-color: #3ABA9B;
 }
+
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
