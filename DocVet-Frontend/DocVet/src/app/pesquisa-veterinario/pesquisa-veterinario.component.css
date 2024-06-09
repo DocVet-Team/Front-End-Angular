@@ -89,11 +89,11 @@
     background-color: transparent;
 }
 
-.imagemDoutores{/*Imagem HTML*/
+.imagemDoutores{
     position: relative;
 }
 
-.pata:hover{/*Imagem CSS*/
+.pata:hover{
     position: relative;
     border-width: 0;
     background-size: 50px;
