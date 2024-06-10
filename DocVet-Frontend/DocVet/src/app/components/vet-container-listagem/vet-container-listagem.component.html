@@ -8,8 +8,9 @@
           <br>
           <!-- <h4>Convenios</h4> -->
 
-          <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+          <div style="display: flex; flex-direction: row; flex-wrap: wrap; height: 20px; margin-bottom: 25px;">
               <img *ngFor="let convenio of convenios" [src]="convenio.foto" width="30px" class="convenioCirculo">
+              <h5 [hidden]="false">Particular</h5>
            </div>
 
            <br>

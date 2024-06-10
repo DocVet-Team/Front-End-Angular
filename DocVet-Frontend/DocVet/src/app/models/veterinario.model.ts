@@ -1,3 +1,4 @@
+import { Convenio } from "./convenio.model";
 import { Especialidade } from "./especialidade.model";
 
 export class Veterinario {
@@ -9,5 +10,6 @@ export class Veterinario {
   senha: string = '';
   valor: number = 0;
   especialidades: Especialidade[] = [];
+  convenios: Convenio[] = [];
 
 }

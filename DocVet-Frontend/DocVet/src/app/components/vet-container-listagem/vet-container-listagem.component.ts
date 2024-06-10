@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Especialidade } from '../../models/especialidade.model';
 import { CommonModule, CurrencyPipe } from '@angular/common';
+import { Convenio } from '../../models/convenio.model';
 
 @Component({
   selector: 'app-vet-container-listagem',
@@ -16,4 +17,5 @@ export class VetContainerListagemComponent {
   @Input() foto: string = '';
   @Input() valor: number = 0;
   @Input() especialidades: Especialidade[] = [];
+  @Input() convenios: Convenio[] = [];
 }
