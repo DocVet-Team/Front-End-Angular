@@ -1,12 +1,13 @@
-/* * {
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: 'arial';
-    color: #ffffff;
-} */
+    /* color: #ffffff; */
 
-/* body {
+}
+
+body {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -14,13 +15,14 @@
     align-items: center;
     background-color: #07d9b2;
 
-} */
+}
 
 .container {
     width: 80%;
     height: 100vh;
     display: flex;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, .212);
+    box-sizing: border-box;
 }
 
 .form-image {
