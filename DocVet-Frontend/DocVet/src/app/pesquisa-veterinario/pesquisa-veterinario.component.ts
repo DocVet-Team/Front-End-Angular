@@ -26,9 +26,6 @@ export class PesquisaVeterinarioComponent {
     this.veterinarioService.consultar().toPromise().then((res?: Veterinario[]) => {
       this.veterinarios = res!;
       console.log(this.veterinarios);
-      // this.veterinarios.forEach(veterinario => {
-      //   console.log(veterinario.especialidades);
-      // });
     })
   }
 

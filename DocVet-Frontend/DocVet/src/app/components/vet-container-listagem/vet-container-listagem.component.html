@@ -4,10 +4,15 @@
       <img style="object-fit: cover;"  [src]="foto ? foto : 'assets/images/FotoPerfilVazia.png'" width="200px" class="fixed-height img-fluid img-thumbnail mt-3 imagemDoutores imagem">
 
       <div class="card-body">
-          <h4 *ngFor="let especialidade of especialidades">{{ especialidade.especialidade }}</h4>
-          <!-- <br> -->
-          <!-- <h4>Convenios</h4> -->
+          <h5 *ngFor="let especialidade of especialidades">{{ especialidade.especialidade }}</h5>
           <br>
+          <!-- <h4>Convenios</h4> -->
+
+          <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+              <img *ngFor="let convenio of convenios" [src]="convenio.foto" width="30px" class="convenioCirculo">
+           </div>
+
+           <br>
           <h5>{{ valor | currency:'BRL':'symbol':'1.2-2' }}</h5>
 
       </div>
