@@ -9,8 +9,11 @@ import { DonoDoPet } from '../models/donodepet.model';
   providedIn: 'root'
 })
 export class DonoDoPetService {
+  getDonoDoPet() {
+    throw new Error('Method not implemented.');
+  }
 
-  private apiUrl = 'http://localhost:8080/api/v1/dono-pets'; 
+  private apiUrl = 'http://localhost:8080/api/v1/dono-pets';
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<DonoDoPet[]> {
