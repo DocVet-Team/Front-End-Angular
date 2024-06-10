@@ -4,7 +4,7 @@ import { Especialidade } from "./especialidade.model";
 export class Veterinario {
   id: number = 0;
   nome: string = "";
-  cpf: string = '';
+  crmv: string = '';
   email: string = '';
   foto: string = '';
   senha: string = '';
