@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class TipoAnimalService {
 
-  private apiUrl = 'http://localhost:8080/api/v1/tipoanimal'; // Atualize com o URL correto da sua API
+  private apiUrl = 'http://localhost:8080/api/v1/tipoanimal/'; // Atualize com o URL correto da sua API
 
   constructor(private http: HttpClient) { }
 

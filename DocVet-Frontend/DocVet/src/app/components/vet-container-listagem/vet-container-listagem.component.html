@@ -8,14 +8,23 @@
           <br>
           <!-- <h4>Convenios</h4> -->
 
-          <div style="display: flex; flex-direction: row; flex-wrap: wrap; height: 20px; margin-bottom: 25px;">
-              <img *ngFor="let convenio of convenios" [src]="convenio.foto" width="30px" class="convenioCirculo">
-              <h5 [hidden]="false">Particular</h5>
+          <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; height: 20px; margin-bottom: 20px;">
+              <img [hidden]="convenios.length > 0 ? false : true" *ngFor="let convenio of convenios" [src]="convenio.foto" width="30px" class="convenioCirculo">
+              <span style="font-weight: 100; font-size: 20px;" [hidden]="convenios.length === 0 ? false : true">Particular</span>
            </div>
 
            <br>
-          <h5>{{ valor | currency:'BRL':'symbol':'1.2-2' }}</h5>
 
+           <div *ngFor="let telefone of telefones">
+             <span style="font-size: 16px;">{{telefone}}</span>
+
+            </div>
+
+             <br>
+
+            <h5>{{ valor | currency:'BRL':'symbol':'1.2-2' }}</h5>
+          <!-- <br> -->
+          <!-- <button style="width: 150px; background-color: #186053; color: white;" class="btn" (click)="onClick()">Ver mais</button> -->
       </div>
   </div>
 </div>

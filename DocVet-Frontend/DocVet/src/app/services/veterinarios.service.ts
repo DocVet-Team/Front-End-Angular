@@ -20,6 +20,11 @@ export class VeterinarioService {
     return this.http.get<Veterinario[]>(url);
   }
 
+  consultarNome (nome: string): Observable<Veterinario[]>{
+    const urlLocal = `${url}nome/${nome}`;
+    return this.http.get<Veterinario[]>(urlLocal);
+  }
+
   consultarPorId(id: number): Observable<Veterinario>{
     const urlLocal = `${url}/${id}`;
     return this.http.get<Veterinario>(urlLocal);
