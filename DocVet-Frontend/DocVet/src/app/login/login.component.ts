@@ -1,41 +1,50 @@
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from './../services/auth.service';
-import { Component, NgModule, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-login',
+  standalone: true,
+  imports: [RouterLink,CommonModule,FormsModule,CommonModule,ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup | any;
-  erroLogin: string = '';
+  loginForm!: FormGroup;
+  errorMessage: string = '';
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) { }
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
+    this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      senha: ['', [Validators.required, Validators.minLength(6)]]
+      senha: ['', [Validators.required, Validators.minLength(6)]],
+      tipoUsuario: ['dono_pet', Validators.required] // Adicione validador para o tipo de usuário
     });
   }
+  
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.loginForm.valid) {
-      const { email, senha } = this.loginForm.value;
-      this.authService.login(email, senha).subscribe(
-        (response: any) => {
-          this.router.navigate(['/perfil']); // Substitua '/perfil' pela rota desejada
+      const { email, senha, tipoUsuario } = this.loginForm.value;
+      this.authService.login(email, senha, tipoUsuario).subscribe(
+        response => {
+          console.log('Resposta do login:', response);
+          if (response === "Login bem-sucedido") {
+            // Sucesso
+            localStorage.setItem('authToken', response.token);
+            this.router.navigate(['/perfil']); 
+          } else {
+            // Falha
+            this.errorMessage = response;
+          }
         },
-        (error: any) => {
-          this.erroLogin = 'Credenciais inválidas';
+        error => {
+          console.error('Erro ao fazer login:', error);
+          this.errorMessage = 'Ocorreu um erro ao tentar fazer login.';
         }
       );
     }

@@ -18,5 +18,8 @@ export const routes: Routes = [
   { path: 'cadastrodonopet', component: CadastroDonoDePetComponent }, 
   { path: 'cadastroveterinario', component: CadastroVeterinarioComponent }, 
   { path: 'pesquisaveterinario', component: PesquisaVeterinarioComponent },
+
+  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
 

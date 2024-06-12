@@ -5,79 +5,47 @@
       <img src="/assets/images/cachorroMedico.jpg" alt="cachorroMedico">
     </div>
     <div class="form">
-
-        <div class="form-header">
-          <div class="circulo">
-            <img src="/assets/images/docvet.png" alt="" width="100">
-          </div>
-
-          <div class="title">
-            <h1>Login</h1>
-          </div>
-
-        </div>
-        <form class="input-group">
-          <div class="input-box">
-            <input id="email" type="text" placeholder="Digite seu E-mail" >
-          </div>
-
-          <div class="input-box">
-            <input id="senha" type="password" placeholder="Digite sua senha" >
-          </div>
-
-          <div class="login-button">
-            <button type="submit">Entrar</button>
-          </div>
-
-          <div class="title">
-            <h1>Não possui cadastro?</h1>
-
-            <a routerLink="/cadastrodonopet" class="cadastre-button">
-                <button class="cadastre-btn">Dono de pet</button>
-            </a>
-            <a routerLink="/cadastroveterinario" class="cadastre-button">
-                <button class="cadastre-btn">Veterinario</button>
-            </a>
-        </div>
-        </form>
-        </div>
-    </div>
-</div>
-
-<!-- <div class="teste">
-  <div class="container">
-    <div class="form-image">
-      <h1 class="bv">Bem Vindo ao DocVet</h1>
-      <img src="/assets/images/cachorroMedico.jpg" alt="cachorroMedico">
-    </div>
-    <div class="form">
       <div class="form-header">
         <div class="circulo">
-          <img src="/assets/images/docvet.png" alt="" width="100">
+          <img src="/assets/images/docvet.png" alt="DocVet Logo" width="100">
         </div>
         <div class="title">
           <h1>Login</h1>
         </div>
       </div>
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="input-group">
+      <form id="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="input-box">
           <input id="email" type="text" placeholder="Digite seu E-mail" formControlName="email">
-          <div *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched">
-            <small *ngIf="loginForm.get('email').errors.required">Email é obrigatório.</small>
-            <small *ngIf="loginForm.get('email').errors.email">Email inválido.</small>
+          <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error-message">
+            <small *ngIf="loginForm.get('email')?.errors?.['required']">Email é obrigatório.</small>
+            <small *ngIf="loginForm.get('email')?.errors?.['email']">Email inválido.</small>
           </div>
         </div>
         <div class="input-box">
           <input id="senha" type="password" placeholder="Digite sua senha" formControlName="senha">
-          <div *ngIf="loginForm.get('senha').invalid && loginForm.get('senha').touched">
-            <small *ngIf="loginForm.get('senha').errors.required">Senha é obrigatória.</small>
-            <small *ngIf="loginForm.get('senha').errors.minlength">Senha deve ter pelo menos 6 caracteres.</small>
+          <div *ngIf="loginForm.get('senha')?.invalid && loginForm.get('senha')?.touched" class="error-message">
+            <small *ngIf="loginForm.get('senha')?.errors?.['required']">Senha é obrigatória.</small>
+            <small *ngIf="loginForm.get('senha')?.errors?.['minlength']">Senha deve ter pelo menos 6 caracteres.</small>
+          </div>
+        </div>
+        <div class="input-box">
+          <label for="tipoUsuario">Selecionar tipo de usuário:</label>
+          <div>
+            <input type="radio" id="dono_pet" name="tipoUsuario" value="dono_pet" formControlName="tipoUsuario">
+            <label for="dono_pet">Dono de Pet</label>
+          </div>
+          <div>
+            <input type="radio" id="veterinario" name="tipoUsuario" value="veterinario" formControlName="tipoUsuario">
+            <label for="veterinario">Veterinário</label>
           </div>
         </div>
         <div class="login-button">
           <button type="submit" [disabled]="loginForm.invalid">Entrar</button>
         </div>
       </form>
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
       <div class="title">
         <h1>Não possui cadastro?</h1>
         <a routerLink="/cadastrodonopet" class="cadastre-button">
@@ -89,4 +57,4 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>
