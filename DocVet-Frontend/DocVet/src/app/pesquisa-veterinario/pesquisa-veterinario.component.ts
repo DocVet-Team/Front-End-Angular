@@ -42,6 +42,11 @@ export class PesquisaVeterinarioComponent {
   tipoAnimalSelecionado: TipoAnimal[] = [];
   convenioSelecionado: Convenio[] = [];
 
+  atendeEspecialidades: boolean = true;
+  atendeTipoAnimal : boolean = true;
+  atendeConvenios : boolean = true;
+  atendeValorPesquisado: boolean = true;
+
 
   nomePesquisado: string = '';
   valorPesquisado: number = 0;
@@ -64,29 +69,24 @@ export class PesquisaVeterinarioComponent {
 
   filtrarVeterinarios() {
     this.veterinariosFiltrados = this.veterinarios.filter(veterinario => {
-      const atendeEspecialidades = this.especialidadesSelecionadas.every(especialidade =>
-        veterinario.especialidades?.some(veterinarioEspecialidade => veterinarioEspecialidade.id === especialidade.id)
+
+      this.atendeEspecialidades = this.especialidadesSelecionadas.length === 0 || this.especialidadesSelecionadas.every(especialidade =>
+        veterinario.especialidades.some(veterinarioEspecialidade => veterinarioEspecialidade.id === especialidade.id)
       );
 
-      const atendeTipoAnimal = this.tipoAnimalSelecionado.length === 0 || this.tipoAnimalSelecionado.every(tipoAnimal =>
-        veterinario.tipoAnimal?.some(veterinarioTipoAnimal => veterinarioTipoAnimal.id === tipoAnimal.id)
+      this.atendeTipoAnimal = this.tipoAnimalSelecionado.length === 0 || this.tipoAnimalSelecionado.every(tipoAnimal =>
+        veterinario.tipoAnimal.some(veterinarioTipoAnimal => veterinarioTipoAnimal.id === tipoAnimal.id)
       );
 
-      // const atendePortes = this.portesSelecionados.length === 0 || this.portesSelecionados.some(porte =>
-      //   veterinario.portes?.some(veterinarioPorte => veterinarioPorte.valor === porte.valor)
-      // );
-
-      const atendeConvenios = this.convenioSelecionado.length === 0 || this.convenioSelecionado.every(convenio =>
-        veterinario.convenios?.some(veterinarioConvenio => veterinarioConvenio.id === convenio.id)
+      this.atendeConvenios = this.convenioSelecionado.length === 0 || this.convenioSelecionado.every(convenio =>
+        veterinario.convenios.some(veterinarioConvenio => veterinarioConvenio.id === convenio.id)
       );
-
-      let atendeValorPesquisado = true;
 
       if (this.valorPesquisado > 0 || this.valorPesquisado != null) {
-        atendeValorPesquisado = veterinario.valor <= this.valorPesquisado;
+        this.atendeValorPesquisado = veterinario.valor <= this.valorPesquisado;
       }
 
-      return atendeEspecialidades && atendeTipoAnimal && atendeConvenios && atendeValorPesquisado // /*&& atendePortes*/;
+      return this.atendeEspecialidades && this.atendeTipoAnimal && this.atendeConvenios && this.atendeValorPesquisado
     });
   }
 
@@ -121,20 +121,6 @@ export class PesquisaVeterinarioComponent {
     });
   }
 
-
-
-
-
-
-  adicionarPortesSelecionados() {
-    this.portesSelecionados = [];
-    this.portes.forEach(porte => {
-      const checkbox = document.getElementById('porteCheck' + porte.valor) as HTMLInputElement;
-      if (checkbox.checked && checkbox.checked) {
-        this.portesSelecionados.push(porte);
-        }
-      });
-  }
 
 
 
