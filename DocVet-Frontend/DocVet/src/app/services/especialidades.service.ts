@@ -1,7 +1,6 @@
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Veterinario } from '../models/veterinario.model';
 import { Especialidade } from '../models/especialidade.model';
 
 const url = 'http://localhost:8080/api/v1/especialidades/'
