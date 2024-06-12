@@ -5,7 +5,7 @@
             <img src="/assets/images/cachorroMedico.jpg" alt="cachorroMedico">
         </div>
         <div class="form">
-            <form id="form" [formGroup]="formulario" (ngSubmit)="submitForm()" action="http://localhost:8080/api/v1/veterinarios/">
+            <form id="form" [formGroup]="formulario" (ngSubmit)="submitForm()">
                 <div class="form-header">
                     <div class="circulo">
                         <img src="/assets/images/docvet.png" alt="" width="100">
@@ -17,28 +17,42 @@
 
                 <div class="input-group">
                     <div class="input-box">
-                        <input id="nome" type="text" formControlName="nome" placeholder="Digite seu nome completo" class="inputs">
+                        <input id="nome" type="text" formControlName="nome" placeholder="Digite seu nome completo" class="inputs required" (input)="nameValidate()">
+                        <span *ngIf="formulario?.get('nome')?.errors?.['required']" class="span-required"><b>Nome é obrigatório</b></span>
+                        <span *ngIf="formulario?.get('nome')?.errors?.['minlength']" class="span-required"><b>Nome deve conter no mínimo 3 caracteres</b></span>
                     </div>
 
                     <div class="input-box">
-                        <input id="email" type="email" formControlName="email" placeholder="Digite seu Email" class="inputs">
+                        <input id="email" type="email" formControlName="email" placeholder="Digite seu Email" class="inputs required" />
+                        <span *ngIf="formulario.get('email')?.errors?.['required']" class="span-required"><b>Email é obrigatório</b></span>
+                        <span *ngIf="formulario.get('email')?.errors?.['email']" class="span-required"><b>Digite um email válido</b></span>
                     </div>
 
                     <div class="input-box">
-                        <input id="crmv" type="text" formControlName="crmv" placeholder="Digite seu crmv" class="inputs">
-                    </div>
-                    
-                    <div class="input-box">
-                        <input id="cpf" type="text" formControlName="cpf" placeholder="Digite seu CPF" class="inputs required" >
+                        <input id="crmv" type="text" formControlName="crmv" placeholder="Digite seu crmv" class="inputs required">
+                        <span *ngIf="formulario.get('crmv')?.errors?.['required']" class="span-required"><b>crmv é obrigatório</b></span>
+                        <span *ngIf="formulario.get('crmv')?.errors?.['minlength']" class="span-required"><b>CRMV deve conter 11 dígitos</b></span>
                     </div>
 
                     <div class="input-box">
-                        <input id="telefone" type="tel" formControlName="telefone" placeholder="Digite Seu telefone" class="inputs required" >
+                        <input id="cpf" type="text" formControlName="cpf" placeholder="Digite seu CPF" class="inputs required" />
+                        <span *ngIf="formulario.get('cpf')?.errors?.['required']" class="span-required"><b>CPF é obrigatório</b></span>
+                        <span *ngIf="formulario.get('cpf')?.errors?.['minlength']" class="span-required"><b>CPF deve conter 11 dígitos</b></span>
                     </div>
 
                     <div class="input-box">
-                        <input id="especialidade" type="text" formControlName="especialidades" placeholder="Digite a Especialidade" class="inputs">
+                        <input id="telefone" type="tel" formControlName="telefone" placeholder="Digite seu telefone" class="inputs required" />
+                        <span *ngIf="formulario.get('telefone')?.errors?.['required']" class="span-required"><b>Telefone é obrigatório</b></span>
+                        <span *ngIf="formulario.get('telefone')?.errors?.['minlength']" class="span-required"><b>Telefone deve conter 11 dígitos</b></span>
                     </div>
+
+                    <div class="input-box">
+                        <label for="especialidade">Especialidade:</label>
+                        <select id="especialidade" formControlName="especialidade" class="inputs">
+                          <option hidden>Selecione uma especialidade</option>
+                          <option *ngFor="let especialidade of especialidades" [value]="especialidade.id">{{ especialidade.nome }}</option>
+                        </select>
+                      </div>
 
                     <div class="input-box">
                         <input id="cidade" type="text" formControlName="cidade" placeholder="Digite Sua cidade de atendimento" class="inputs">
@@ -46,7 +60,7 @@
 
                     <div class="input-boxx">
                         <b>Selecione o seu estado:</b><br>
-                        <select id="estado" formControlName="estado" class="form-select" style="background-color:#186053; margin-left: 0.5rem;">
+                        <select id="estado" formControlName="estado" class="form-select custom-select">
                             <option hidden></option>
                             <option value="AC">AC</option>
                             <option value="AP">AP</option>
@@ -80,25 +94,25 @@
 
                     <div class="input-boxx">
                         <b>Tipos de animais:</b><br>
-                        <label><input type="checkbox" id="tipo_cachorro" formControlName="tipo_animal" value="Cachorro" class="inputs"></label> Cachorro
-                        <label><input type="checkbox" id="tipo_gato" formControlName="tipo_animal" value="Gato" class="inputs"></label> Gato
-                        <label><input type="checkbox" id="tipo_passaro" formControlName="tipo_animal" value="Passaro" class="inputs"></label> Passaro
-                        <label><input type="checkbox" id="tipo_peixe" formControlName="tipo_animal" value="Peixe" class="inputs"></label> Peixe
+                        <label><input type="checkbox" (change)="onCheckboxChange($event, 'tipo_animal')" value="Cachorro" class="inputs"></label> Cachorro
+                        <label><input type="checkbox" (change)="onCheckboxChange($event, 'tipo_animal')" value="Gato" class="inputs"></label> Gato
+                        <label><input type="checkbox" (change)="onCheckboxChange($event, 'tipo_animal')" value="Passaro" class="inputs"></label> Passaro
+                        <label><input type="checkbox" (change)="onCheckboxChange($event, 'tipo_animal')" value="Peixe" class="inputs"></label> Peixe
                     </div><br>
 
                     <div class="input-boxx">
                         <b>Porte:</b><br>
-                        <label><input type="checkbox" id="porte_pequeno" formControlName="porte" value="Pequeno" class="inputs"></label> Pequeno
-                        <label><input type="checkbox" id="porte_medio" formControlName="porte" value="Médio" class="inputs"></label> Médio
-                        <label><input type="checkbox" id="porte_grande" formControlName="porte" value="Grande" class="inputs"></label> Grande
+                        <label><input type="checkbox" (change)="onCheckboxChange($event, 'porte')" value="PEQUENO" class="inputs"></label> Pequeno
+                        <label><input type="checkbox" (change)="onCheckboxChange($event, 'porte')" value="MEDIO" class="inputs"></label> Médio
+                        <label><input type="checkbox" (change)="onCheckboxChange($event, 'porte')" value="GRANDE" class="inputs"></label> Grande
                     </div><br>
-
+             
                     <div class="input-boxx">
                         <b>Convênio:</b><br>
-                        <label><input type="checkbox" id="convenio_plamev" formControlName="convenio" value="Plamev" class="inputs"></label> Plamev
-                        <label><input type="checkbox" id="convenio_petlove" formControlName="convenio" value="PetLove" class="inputs"></label> PetLove
-                        <label><input type="checkbox" id="convenio_pethealth" formControlName="convenio" value="PetHealth" class="inputs"></label> PetHealth
-                        <label><input type="checkbox" id="convenio_particular" formControlName="convenio" value="Particular" class="inputs"></label> Particular
+                        <label><input type="checkbox" (change)="onCheckboxChange($event, 'convenio')" value="Plamev" class="inputs"></label> Plamev
+                        <label><input type="checkbox" (change)="onCheckboxChange($event, 'convenio')" value="PetLove" class="inputs"></label> PetLove
+                        <label><input type="checkbox" (change)="onCheckboxChange($event, 'convenio')" value="PetHealth" class="inputs"></label> PetHealth
+                        <label><input type="checkbox" (change)="onCheckboxChange($event, 'convenio')" value="Particular" class="inputs"></label> Particular
                     </div><br>
 
                     <div class="input-box">
@@ -110,14 +124,18 @@
                     </div>
 
                     <div class="input-box">
-                        <input id="senha" type="password" formControlName="senha" placeholder="Digite sua senha" class="inputs">
+                        <input id="senha" type="password" formControlName="senha" placeholder="Digite sua senha" class="inputs required" />
+                        <span *ngIf="formulario.get('senha')?.errors?.['required']" class="span-required"><b>Senha é obrigatória</b></span>
+                        <span *ngIf="formulario.get('senha')?.errors?.['minlength']" class="span-required"><b>Senha deve ter pelo menos 8 caracteres</b></span>
                     </div>
-    
+  
                     <div class="input-box">
-                        <input id="confsenha" type="password" formControlName="confsenha" placeholder="Digite sua senha novamente" class="inputs">
+                        <input id="confsenha" type="password" formControlName="confsenha" placeholder="Digite sua senha novamente" class="inputs required" />
+                        <span *ngIf="formulario.get('confsenha')?.errors?.['required']" class="span-required"><b>Confirmação de senha é obrigatória</b></span>
+                        <span *ngIf="formulario.get('confsenha')?.errors?.['mustMatch']" class="span-required"><b>As senhas não coincidem</b></span>
                     </div>
                 </div>
-                
+
                 <div class="cadastre-botton">
                     <button type="submit">Cadastrar-se</button>
                 </div>

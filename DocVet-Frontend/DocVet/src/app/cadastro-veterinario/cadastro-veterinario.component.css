@@ -212,12 +212,27 @@ input {
 }
 
 .span-required {
-    font-size: 10px;
+    font-size: 13px;
     font-weight: 500;
-    display: none;
     color: rgb(255, 0, 0);
+    margin-top: 0.5rem;
+  }
+#estado {
+    color: black; /* Define a cor do texto como preto */
 }
 
+.form-select {
+    color: black; /* Define a cor do texto como preto */
+}
+
+.custom-select {
+    color: black; /* Define a cor do texto como preto */
+}
+
+select,
+option {
+    color: black; /* Define a cor do texto como preto */
+}
 @media screen and (max-width:1628px) {
     .form-image {
         display: none;
