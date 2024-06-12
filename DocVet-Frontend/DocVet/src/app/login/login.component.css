@@ -30,7 +30,13 @@
       /* flex-direction: column; */
       flex-wrap: wrap;
      }
+     .tipoDeUsuario{
+      box-sizing: border-box;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
 
+     }
 
 
     .container {
@@ -166,12 +172,20 @@
 
     }
 
+    .tipoDeUsuario {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
     .input-box {
         display: flex;
         flex-direction: column;
         margin-bottom: 1.1rem;
         height: 1rem;
-        margin-bottom: 30px;
+        margin-bottom: 40px;
+        width: 330px;
+
 
     }
 
