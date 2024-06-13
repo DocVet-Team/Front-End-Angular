@@ -1,5 +1,5 @@
-<div class="body">
-    <div class="container">
+<div>
+    <div>
         <div class="form-image">
             <h1 class="bv">Bem Vindo ao DocVet</h1>
             <img src="/assets/images/cachorroMedico.jpg" alt="cachorroMedico">
@@ -47,12 +47,12 @@
                     </div>
 
                     <div class="input-box">
-                        <label class="input-boxx" for="especialidade">Especialidade:</label>
-                        <select id="especialidade" formControlName="especialidade" class="inputs">
-                          <option hidden>Selecione uma especialidade</option>
-                          <option *ngFor="let especialidade of especialidades" [value]="especialidade.id">{{ especialidade.nome }}</option>
-                        </select>
-                      </div>
+                      <label for="especialidade">Especialidade:</label>
+                      <select id="especialidade" formControlName="especialidade" class="dropdown">
+                        <option hidden>Selecione uma especialidade</option>
+                        <option *ngFor="let especialidade of especialidades" [value]="especialidade.id">{{ especialidade.especialidade }}</option>
+                      </select>
+                    </div>
 
                     <div class="input-box">
                         <input id="cidade" type="text" formControlName="cidade" placeholder="Digite Sua cidade de atendimento" class="inputs">
@@ -93,12 +93,15 @@
                     </div>
 
                     <div class="input-boxx">
-                        <b>Tipos de animais:</b><br>
-                        <label><input type="checkbox" (change)="onCheckboxChange($event, 'tipo_animal')" value="Cachorro" class="inputs"></label> Cachorro
-                        <label><input type="checkbox" (change)="onCheckboxChange($event, 'tipo_animal')" value="Gato" class="inputs"></label> Gato
-                        <label><input type="checkbox" (change)="onCheckboxChange($event, 'tipo_animal')" value="Passaro" class="inputs"></label> Passaro
-                        <label><input type="checkbox" (change)="onCheckboxChange($event, 'tipo_animal')" value="Peixe" class="inputs"></label> Peixe
+                      <b>Tipos de animais:</b><br>
+                      <label *ngFor="let tipo of tipoAnimais">
+                        <input type="checkbox" (change)="atualizarTipoAnimal(tipo, $event)" [value]="tipo.nome" class="inputs"> {{ tipo.nome }}
+                      </label>
                     </div><br>
+
+
+
+
 
                     <div class="input-boxx">
                         <b>Porte:</b><br>
@@ -106,14 +109,17 @@
                         <label><input type="checkbox" (change)="onCheckboxChange($event, 'porte')" value="MEDIO" class="inputs"></label> Médio
                         <label><input type="checkbox" (change)="onCheckboxChange($event, 'porte')" value="GRANDE" class="inputs"></label> Grande
                     </div><br>
-             
+
                     <div class="input-boxx">
-                        <b>Convênio:</b><br>
-                        <label><input type="checkbox" (change)="onCheckboxChange($event, 'convenio')" value="Plamev" class="inputs"></label> Plamev
-                        <label><input type="checkbox" (change)="onCheckboxChange($event, 'convenio')" value="PetLove" class="inputs"></label> PetLove
-                        <label><input type="checkbox" (change)="onCheckboxChange($event, 'convenio')" value="PetHealth" class="inputs"></label> PetHealth
-                        <label><input type="checkbox" (change)="onCheckboxChange($event, 'convenio')" value="Particular" class="inputs"></label> Particular
-                    </div>
+
+                      <div class="input-boxx">
+                        <b>Convênios:</b><br>
+                        <label *ngFor="let convenio of convenios">
+                          <input type="checkbox" (change)="atualizarConvenio(convenio, $event)" [value]="convenio.id" class="inputs"> {{ convenio.nome }}
+                        </label>
+                      </div><br>
+
+
 
                     <div class="input-box">
                         <input id="valor" type="number" formControlName="valor" placeholder="Digite o valor da sua consulta particular" class="inputs">
@@ -128,13 +134,15 @@
                         <span *ngIf="formulario.get('senha')?.errors?.['required']" class="span-required"><b>Senha é obrigatória</b></span>
                         <span *ngIf="formulario.get('senha')?.errors?.['minlength']" class="span-required"><b>Senha deve ter pelo menos 8 caracteres</b></span>
                     </div>
-  
+
                     <div class="input-box">
                         <input id="confsenha" type="password" formControlName="confsenha" placeholder="Digite sua senha novamente" class="inputs required" />
                         <span *ngIf="formulario.get('confsenha')?.errors?.['required']" class="span-required"><b>Confirmação de senha é obrigatória</b></span>
                         <span *ngIf="formulario.get('confsenha')?.errors?.['mustMatch']" class="span-required"><b>As senhas não coincidem</b></span>
                     </div>
                 </div>
+                </div>
+                <br>
 
                 <div class="cadastre-botton">
                     <button type="submit">Cadastrar-se</button>

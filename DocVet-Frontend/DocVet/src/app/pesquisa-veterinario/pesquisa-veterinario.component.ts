@@ -69,26 +69,24 @@ export class PesquisaVeterinarioComponent {
 
   filtrarVeterinarios() {
     this.veterinariosFiltrados = this.veterinarios.filter(veterinario => {
-
-      this.atendeEspecialidades = this.especialidadesSelecionadas.length === 0 || this.especialidadesSelecionadas.every(especialidade =>
+      const atendeEspecialidades = this.especialidadesSelecionadas.length === 0 || this.especialidadesSelecionadas.every(especialidade =>
         veterinario.especialidades.some(veterinarioEspecialidade => veterinarioEspecialidade.id === especialidade.id)
       );
 
-      this.atendeTipoAnimal = this.tipoAnimalSelecionado.length === 0 || this.tipoAnimalSelecionado.every(tipoAnimal =>
+      const atendeTipoAnimal = this.tipoAnimalSelecionado.length === 0 || this.tipoAnimalSelecionado.every(tipoAnimal =>
         veterinario.tipoAnimal.some(veterinarioTipoAnimal => veterinarioTipoAnimal.id === tipoAnimal.id)
       );
 
-      this.atendeConvenios = this.convenioSelecionado.length === 0 || this.convenioSelecionado.every(convenio =>
+      const atendeConvenios = this.convenioSelecionado.length === 0 || this.convenioSelecionado.every(convenio =>
         veterinario.convenios.some(veterinarioConvenio => veterinarioConvenio.id === convenio.id)
       );
 
-      if (this.valorPesquisado > 0 || this.valorPesquisado != null) {
-        this.atendeValorPesquisado = veterinario.valor <= this.valorPesquisado;
-      }
+      const atendeValorPesquisado = this.valorPesquisado === 0 || veterinario.valor <= this.valorPesquisado;
 
-      return this.atendeEspecialidades && this.atendeTipoAnimal && this.atendeConvenios && this.atendeValorPesquisado
+      return atendeEspecialidades && atendeTipoAnimal && atendeConvenios && atendeValorPesquisado;
     });
   }
+
 
   adicionarTipoAnimalSelecionado() {
     this.tipoAnimalSelecionado = [];
@@ -120,9 +118,6 @@ export class PesquisaVeterinarioComponent {
       }
     });
   }
-
-
-
 
 
 
