@@ -22,10 +22,9 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, Validators.minLength(6)]],
-      tipoUsuario: ['dono_pet', Validators.required] // Adicione validador para o tipo de usuário
+      tipoUsuario: ['veterinario', Validators.required] // Aqui ajuste conforme seu tipo de usuário padrão
     });
   }
-  
 
   onSubmit(): void {
     if (this.loginForm.valid) {
@@ -33,13 +32,12 @@ export class LoginComponent implements OnInit {
       this.authService.login(email, senha, tipoUsuario).subscribe(
         response => {
           console.log('Resposta do login:', response);
-          if (response === "Login bem-sucedido") {
-            // Sucesso
+          if (response.success) {
             localStorage.setItem('authToken', response.token);
-            this.router.navigate(['/perfil']); 
+            localStorage.setItem('userId', response.userId.toString());
+            this.router.navigate(['/perfil']);
           } else {
-            // Falha
-            this.errorMessage = response;
+            this.errorMessage = response.message;
           }
         },
         error => {
